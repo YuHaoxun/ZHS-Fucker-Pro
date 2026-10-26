@@ -93,6 +93,14 @@ else:
         json.dump(config, f, indent=4)
 
 # parse arguments
+def _str2bool(value):
+    """argparse 的 type=bool 会把任意非空字符串都当成 True（bool("False") is True），
+    这里显式解析，让 --tree_view False / --tree_view 0 真的能关掉。"""
+    if isinstance(value, bool):
+        return value
+    return str(value).strip().lower() not in ("0", "false", "no", "off", "")
+
+
 parser = argparse.ArgumentParser(prog="ZHS Fucker Pro")
 parser.add_argument("-c", "--course", type=str, nargs="+",
                     help="CourseId or recruitAndCourseId, can be found in URL")
@@ -117,10 +125,10 @@ parser.add_argument("--show_in_terminal",
                     action="store_true", help="Show QR in terminal")
 parser.add_argument("--proxy", type=str,
                     help="Proxy Config, e.g: http://127.0.0.1:8080")
-parser.add_argument("--tree_view", type=bool,
-                    help="print the tree progress view of the course")
-parser.add_argument("--progressbar_view", type=bool,
-                    help="print the progressbar view of the course")
+parser.add_argument("--tree_view", nargs="?", const=True, type=_str2bool, default=None,
+                    help="print the tree progress view of the course (--tree_view / --tree_view false)")
+parser.add_argument("--progressbar_view", nargs="?", const=True, type=_str2bool, default=None,
+                    help="print the progressbar view of the course (--progressbar_view / --progressbar_view false)")
 parser.add_argument("--image_path", type=str,
                     help="Image save path, default is empty (do not save)")
 parser.add_argument("-ai", "--aicourse", type=str, nargs=2,
@@ -139,8 +147,8 @@ qrlogin = args.qrlogin or config.qrlogin or True  # Force enabled for v2.3.*
 save_cookies = config.save_cookies or False
 qr_extra = config.qr_extra or ObjDict(default=None)
 show_in_terminal = args.show_in_terminal or config.qr_extra.show_in_terminal
-tree_view = args.tree_view or config.tree_view
-progressbar_view = args.progressbar_view or config.progressbar_view
+tree_view = config.tree_view if args.tree_view is None else args.tree_view
+progressbar_view = config.progressbar_view if args.progressbar_view is None else args.progressbar_view
 image_path = args.image_path or config.image_path
 if show_in_terminal is None:
     # Defaults to terminal in Windows

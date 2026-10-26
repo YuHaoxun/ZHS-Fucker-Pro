@@ -3,3 +3,4 @@ pycryptodome
 requests
 tiktoken
 OpenAI
+pywin32; sys_platform == "win32"

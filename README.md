@@ -49,6 +49,7 @@
 | `Pillow` | 二维码与图片显示 |
 | `OpenAI` | AI 答题 |
 | `tiktoken` | 课件长文本切分估算 |
+| `pywin32` | 仅 Windows；`创建桌面快捷方式.py` 用（`requirements.txt` 里已按平台条件写好） |
 
 图形界面用的是 `tkinter`，Python 官方安装包自带，不用额外装。
 即使只想刷视频，`fucker.py` 顶部也会 `import tiktoken` 和 `from openai import OpenAI`，所以这五个包一个都不能省。
@@ -57,17 +58,23 @@
 
 ## 安装
 
+**最省事的方式（Windows）**：下载 ZIP 解压，双击 `首次运行.bat`。
+它会依次检查 Python 版本、装好依赖、再启动界面；缺什么会直接告诉你缺什么。
+
+手动安装：
+
 ```bash
 git clone https://github.com/YuHaoxun/ZHS-Fucker-Pro.git
 cd ZHS-Fucker-Pro
 pip install -r requirements.txt
 ```
 
-或者直接下载 ZIP 解压，效果一样。
-
 ---
 
 ## 快速开始（图形界面）
+
+第一次运行，双击 `首次运行.bat` 即可（检查环境 + 装依赖 + 开界面一条龙）。
+依赖已经装好之后，直接：
 
 ```bash
 python gui.py
@@ -173,7 +180,7 @@ python main.py -ai 1234567890 654321 --noexam   # AI 课：只学资源
 | `--proxy` | 代理，支持 `http://` `https://` `socks5://`，或用 `all://` 同时设置 |
 | `--show_in_terminal` | 把二维码打印到终端 |
 | `--image_path` | 二维码保存目录，留空则不保存 |
-| `--tree_view` / `--progressbar_view` | 目录树 / 进度条开关。**注意**：参数类型是 `type=bool`，命令行传任何值都会变成 `True`，想关只能改 `config.json` |
+| `--tree_view` / `--progressbar_view` | 目录树 / 进度条开关。不带值 = 开；`--tree_view false`（或 `0` / `no` / `off`）= 关 |
 | `-ai, --aicourse <COURSE_ID> <CLASS_ID>` | 刷 AI 课，需要两个参数 |
 | `--noexam` | 配合 `-ai` 使用，只学资源不答题，**不需要任何 AI 密钥** |
 | `-h, --help` | 显示帮助 |
@@ -372,6 +379,11 @@ python main.py -ai 1234567890 654321 --noexam   # 只学资源，不需要密钥
 | `execution.json` / `ai_courses.json` | 课程清单（**不入库**） |
 | `meta.json` | 版本、分支、作者，用于更新检查 |
 | `requirements.txt` | 依赖清单 |
+| `首次运行.bat` | **双击即用**：检查 Python、安装依赖、启动界面 |
+| `启动控制器.bat` | 直接启动图形界面（无黑框） |
+| `run.bat` | 命令行模式启动，自动检查 `python` 是否可用 |
+| `创建桌面快捷方式.py` | 在桌面生成「ZHS Fucker Pro」图标（需要 `pywin32`） |
+| `config.example.json` | 配置字段参考，程序不会自动读取它 |
 | `使用说明.md` | 更细的图文版说明 |
 | `共享课平时测试说明.md` | 共享课测试功能单独说明 |
 | `AGENTS.md` | 给 AI 编码助手看的维护约束 |
@@ -419,7 +431,6 @@ GUI 与子进程之间统一用 UTF-8 传输。若仍乱码，检查 `chcp` 与�
 - 只支持二维码登录，账号密码登录已失效
 - AI 答题需要自备 OpenAI 兼容接口（或用知到自带 AI）
 - 共享课平时测试只验证了题型 1/2/14，其余题型会停
-- `--tree_view` / `--progressbar_view` 在命令行上关不掉（`type=bool` 的历史问题）
 - AI 答案可能出错，程序完成 ≠ 试卷满分，成绩以平台为准
 
 ---
