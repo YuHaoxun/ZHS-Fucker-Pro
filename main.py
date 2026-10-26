@@ -93,7 +93,7 @@ else:
         json.dump(config, f, indent=4)
 
 # parse arguments
-parser = argparse.ArgumentParser(prog="ZHS Fucker")
+parser = argparse.ArgumentParser(prog="ZHS Fucker Pro")
 parser.add_argument("-c", "--course", type=str, nargs="+",
                     help="CourseId or recruitAndCourseId, can be found in URL")
 parser.add_argument("-v", "--videos", type=str, nargs="+",
@@ -180,7 +180,7 @@ if config.check_update:
     with open(getRealPath("meta.json"), "r") as f:
         try:  # some exceptions won't be caught by 'with'
             m = ObjDict(json.load(f))
-            url = f"https://raw.githubusercontent.com/{m.author}/fuckZHS/{m.branch}/meta.json"
+            url = f"https://raw.githubusercontent.com/{m.author}/ZHS-Fucker-Pro/{m.branch}/meta.json"
             r = ObjDict(requests.get(url, proxies=proxies, timeout=5).json())
             current = m.version
             latest = r.version

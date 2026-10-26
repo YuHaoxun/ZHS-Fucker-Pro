@@ -16,7 +16,7 @@ if not os.path.isfile(GUI):
     raise SystemExit(f"找不到 gui.py，请在项目目录内运行本脚本：{GUI}")
 
 desktop = os.path.join(os.path.expanduser("~"), "Desktop")
-lnk = os.path.join(desktop, "ZHS Fucker 控制器.lnk")
+lnk = os.path.join(desktop, "ZHS Fucker Pro.lnk")
 
 if os.path.isfile(lnk):
     os.remove(lnk)
@@ -27,7 +27,7 @@ sc.TargetPath = PYW
 sc.Arguments = f'"{GUI}"'
 sc.WorkingDirectory = BASE
 sc.IconLocation = ICON + ",0"
-sc.Description = "智慧树自动刷课控制器"
+sc.Description = "ZHS Fucker Pro — 智慧树自动刷课工具"
 sc.WindowStyle = 1
 sc.Save()
 

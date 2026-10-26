@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ZHS Fucker 桌面启动器
-把 fuckZHS 的常用操作包成一个图形界面。
+ZHS Fucker Pro 桌面启动器
+把刷课、答题这些常用操作包成一个图形界面。
 
 依赖：项目自带的 requirements.txt（Pillow / requests / pycryptodome / tiktoken / OpenAI）
 运行：python gui.py
@@ -37,7 +37,7 @@ SHARED_TESTS_PY = os.path.join(BASE_DIR, "shared_tests.py")
 # 优先用当前解释器；本机系统 Python 已装齐依赖且带 tkinter
 PYTHON = sys.executable
 
-APP_TITLE = "ZHS Fucker 控制器"
+APP_TITLE = "ZHS Fucker Pro"
 
 # 日志区最多保留的行数。脚本跑几小时会刷出几十万行，
 # 不设上限的话 Text widget 会越来越卡（每次插入都要重算布局）。

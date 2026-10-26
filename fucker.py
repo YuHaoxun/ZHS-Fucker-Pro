@@ -480,8 +480,8 @@ class Fucker:
                                 break
                             except TimeLimitExceeded as e:
                                 logger.info(f"Fucking time limit exceeded: {e}")
-                                self._pushplus("fuckZHS","刷课已完成")
-                                self._bark("fuckZHS","刷课已完成")
+                                self._pushplus("ZHS Fucker Pro","刷课已完成")
+                                self._bark("ZHS Fucker Pro","刷课已完成")
                                 tprint(prefix)
                                 tprint(f"{prefix}##Fucking time limit exceeded: {e}\n")
                                 return
@@ -496,15 +496,15 @@ class Fucker:
                                     tprint(f"{prefix*3}__Retrying video {video.name}"[:w_lim])
                                     continue
                                 logger.info("Captcha required")
-                                self._pushplus("fuckZHS","需要提供验证码")
-                                self._bark("fuckZHS","需要提供验证码")
+                                self._pushplus("ZHS Fucker Pro","需要提供验证码")
+                                self._bark("ZHS Fucker Pro","需要提供验证码")
                                 tprint(prefix)
                                 tprint(f"{prefix}##Captcha required\a\n")
                                 return
                             except Exception as e:
                                 logger.exception(e)
-                                self._pushplus("fuckZHS",e)
-                                self._bark("fuckZHS",e)
+                                self._pushplus("ZHS Fucker Pro",e)
+                                self._bark("ZHS Fucker Pro",e)
                                 tprint(f"{prefix*3}##Failed: {e}"[:w_lim])
                                 break
         except KeyboardInterrupt:
@@ -597,8 +597,8 @@ class Fucker:
                              ensure_ascii=False)
         print(f"{self.CAPTCHA_MARK}{payload}", flush=True)
 
-        self._pushplus("fuckZHS", f"需要验证码，刷课已暂停：{url}")
-        self._bark("fuckZHS", "需要验证码，刷课已暂停")
+        self._pushplus("ZHS Fucker Pro", f"需要验证码，刷课已暂停：{url}")
+        self._bark("ZHS Fucker Pro", "需要验证码，刷课已暂停")
 
         go = threading.Event()
         abort = {"yes": False}
